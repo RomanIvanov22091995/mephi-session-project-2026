@@ -1,8 +1,8 @@
     1  hostnamectl set-hostname mephi-2026.domain.local
-    2  nmcli con mod <connection> ipv4.addresses 192.168.1.100/24 ipv4.gateway 192.168.1.1 ipv4.dns 8.8.8.8 ipv4.method manual
-    3  nmcli con up <connection>
+    2  nmcli con mod "Wired connection 1" ipv4.addresses 192.168.1.100/24 ipv4.gateway 192.168.1.1 ipv4.dns 8.8.8.8 ipv4.method manual
+    3  nmcli con up "Wired connection 1"
     4  ping -c 4 8.8.8.8 > /tmp/network_check.txt
-    5  ping -c 4 192.168.1.1 >> /tmp/network_check.txt
+    5  ping -c 4 172.28.0.1 >> /tmp/network_check.txt
     6  dnf install -y nginx tcpdump libcap-ng-utils
     7  dnf download --destdir=/tmp/rpm_dl tcpdump
     8  rpm -Uvh /tmp/rpm_dl/tcpdump-*.rpm
@@ -13,7 +13,7 @@
    13  echo 'LABEL=MEPHI_DATA /data/mephi-web ext4 defaults 0 2' >> /etc/fstab
    14  groupadd -f mephi-devs
    15  useradd -m -G mephi-devs mephi-admin
-   16  echo 'mephi-admin:<hidden>' | chpasswd
+    16  echo 'mephi-admin:studentpass' | chpasswd
    17  chown -R mephi-admin:mephi-devs /data/mephi-web
    18  chmod 2775 /data/mephi-web
    19  setenforce 1

@@ -1,14 +1,18 @@
 PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=63 time=25.9 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=63 time=22.1 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=63 time=20.6 ms
-64 bytes from 8.8.8.8: icmp_seq=4 ttl=63 time=62.4 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=63 time=17.2 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=63 time=29.2 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=63 time=16.8 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=63 time=25.5 ms
 
 --- 8.8.8.8 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3078ms
-rtt min/avg/max/mdev = 20.615/32.737/62.351/17.205 ms
-PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 16.771/22.164/29.195/5.354 ms
+PING 172.28.0.1 (172.28.0.1) 56(84) bytes of data.
+64 bytes from 172.28.0.1: icmp_seq=1 ttl=64 time=0.222 ms
+64 bytes from 172.28.0.1: icmp_seq=2 ttl=64 time=0.072 ms
+64 bytes from 172.28.0.1: icmp_seq=3 ttl=64 time=0.075 ms
+64 bytes from 172.28.0.1: icmp_seq=4 ttl=64 time=0.075 ms
 
---- 192.168.1.1 ping statistics ---
-4 packets transmitted, 0 received, 100% packet loss, time 3147ms
-
+--- 172.28.0.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3069ms
+rtt min/avg/max/mdev = 0.072/0.111/0.222/0.064 ms
