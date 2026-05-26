@@ -1,0 +1,32 @@
+    1  hostnamectl set-hostname mephi-2026.domain.local
+    2  nmcli con mod <connection> ipv4.addresses 192.168.1.100/24 ipv4.gateway 192.168.1.1 ipv4.dns 8.8.8.8 ipv4.method manual
+    3  nmcli con up <connection>
+    4  ping -c 4 8.8.8.8 > /tmp/network_check.txt
+    5  ping -c 4 192.168.1.1 >> /tmp/network_check.txt
+    6  dnf install -y nginx tcpdump libcap-ng-utils
+    7  dnf download --destdir=/tmp/rpm_dl tcpdump
+    8  rpm -Uvh /tmp/rpm_dl/tcpdump-*.rpm
+    9  dd if=/dev/zero of=/var/lib/mephi-sdb.img bs=1M count=128
+   10  mkfs.ext4 -L MEPHI_DATA -F /var/lib/mephi-sdb.img
+   11  mkdir -p /data/mephi-web
+   12  mount -o loop /var/lib/mephi-sdb.img /data/mephi-web
+   13  echo 'LABEL=MEPHI_DATA /data/mephi-web ext4 defaults 0 2' >> /etc/fstab
+   14  groupadd -f mephi-devs
+   15  useradd -m -G mephi-devs mephi-admin
+   16  echo 'mephi-admin:<hidden>' | chpasswd
+   17  chown -R mephi-admin:mephi-devs /data/mephi-web
+   18  chmod 2775 /data/mephi-web
+   19  setenforce 1
+   20  semanage fcontext -a -t httpd_sys_content_t '/data/mephi-web(/.*)?'
+   21  restorecon -Rv /data/mephi-web
+   22  chmod u-s /usr/sbin/tcpdump
+   23  setcap cap_net_raw,cap_net_admin+ep /usr/sbin/tcpdump
+   24  sudo -u mephi-admin tcpdump --help
+   25  sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
+   26  echo 'root' > /etc/ssh/denied_users
+   27  nginx -t
+   28  systemctl enable --now nginx
+   29  curl -s http://localhost
+   30  curl -s http://192.168.1.100
+   31  journalctl -u nginx --since "5 minutes ago"
+   32  getenforce > ~/selinux_status.txt

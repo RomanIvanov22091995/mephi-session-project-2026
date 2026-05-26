@@ -1,0 +1,81 @@
+# === journalctl -u nginx --since "5 minutes ago" (если доступно) ===
+-- No entries --
+
+# === nginx -T (фрагмент) и error.log ===
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+# configuration file /etc/nginx/nginx.conf:
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log notice;
+pid /run/nginx.pid;
+include /usr/share/nginx/modules/*.conf;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    types_hash_max_size 4096;
+    types_hash_bucket_size 128;
+    sendfile on;
+    keepalive_timeout 65;
+    access_log /var/log/nginx/access.log;
+    include /etc/nginx/conf.d/*.conf;
+}
+
+# configuration file /etc/nginx/mime.types:
+types {
+application/A2L					a2l;
+application/AML					aml;
+application/andrew-inset			ez;
+application/ATF					atf;
+application/ATFX				atfx;
+application/ATXML				atxml;
+application/atom+xml				atom;
+application/atomcat+xml				atomcat;
+application/atomdeleted+xml			atomdeleted;
+application/atomsvc+xml				atomsvc;
+application/atsc-dwd+xml			dwd;
+application/atsc-held+xml			held;
+application/atsc-rsat+xml			rsat;
+application/auth-policy+xml			apxml;
+application/automationml-amlx+zip   amlx;
+application/bacnet-xdd+zip			xdd;
+application/calendar+xml			xcs;
+application/cbor				cbor;
+application/cccex				c3ex;
+application/ccmp+xml				ccmp;
+application/ccxml+xml				ccxml;
+application/CDFX+XML				cdfx;
+application/cdmi-capability			cdmia;
+application/cdmi-container			cdmic;
+2026/03/30 21:46:23 [notice] 88#88: using the "epoll" event method
+2026/03/30 21:46:23 [notice] 88#88: nginx/1.28.2
+2026/03/30 21:46:23 [notice] 88#88: OS: Linux 6.6.87.2-microsoft-standard-WSL2
+2026/03/30 21:46:23 [notice] 88#88: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2026/03/30 21:46:23 [notice] 89#89: start worker processes
+2026/03/30 21:46:23 [notice] 89#89: start worker process 90
+2026/03/30 21:46:23 [notice] 89#89: start worker process 91
+2026/03/30 21:46:23 [notice] 89#89: start worker process 92
+2026/03/30 21:46:23 [notice] 89#89: start worker process 93
+2026/03/30 21:46:23 [notice] 89#89: start worker process 95
+2026/03/30 21:46:23 [notice] 89#89: start worker process 96
+2026/03/30 21:46:23 [notice] 89#89: start worker process 97
+2026/03/30 21:46:23 [notice] 89#89: start worker process 98
+2026/03/30 21:46:23 [notice] 89#89: start worker process 99
+2026/03/30 21:46:23 [notice] 89#89: start worker process 100
+2026/03/30 21:46:23 [notice] 89#89: start worker process 101
+2026/03/30 21:46:23 [notice] 89#89: start worker process 102
+2026/03/30 21:46:23 [notice] 89#89: start worker process 103
+2026/03/30 21:46:23 [notice] 89#89: start worker process 104
+2026/03/30 21:46:23 [notice] 89#89: start worker process 105
+2026/03/30 21:46:23 [notice] 89#89: start worker process 106
+2026/03/30 21:46:23 [notice] 89#89: start worker process 107
+2026/03/30 21:46:23 [notice] 89#89: start worker process 108
+2026/03/30 21:46:23 [notice] 89#89: start worker process 109
+2026/03/30 21:46:23 [notice] 89#89: start worker process 110
+2026/03/30 21:46:23 [notice] 89#89: start worker process 111
+2026/03/30 21:46:23 [notice] 89#89: start worker process 112
